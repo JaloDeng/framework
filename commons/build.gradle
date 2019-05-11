@@ -1,0 +1,8 @@
+group = 'cn.net.jalo.framework'
+
+jar.enabled = true
+bootJar.enabled = false
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+}

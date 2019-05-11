@@ -1,0 +1,51 @@
+group = 'cn.net.jalo'
+
+buildscript {
+	ext {
+		springBootVersion = '2.1.4.RELEASE'
+	}
+	repositories {
+		jcenter()
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+allprojects {
+	version = '0.1.0-SNAPSHOT'
+}
+
+subprojects {
+	apply plugin: 'eclipse'
+	apply plugin: 'idea'
+	apply plugin: 'io.spring.dependency-management'
+	apply plugin: 'java'
+	apply plugin: 'maven'
+	apply plugin: 'org.springframework.boot'
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+	[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
+
+	repositories {
+		jcenter()
+		mavenLocal()
+		mavenCentral()
+		maven { url "https://repo.spring.io/milestone" }
+	}
+
+	dependencyManagement {
+		dependencies {
+			
+		}
+	}
+
+	gradle.projectsEvaluated {
+		tasks.withType(JavaCompile) {
+			options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+		}
+	}
+}
